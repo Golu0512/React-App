@@ -98,7 +98,7 @@ export default function TextForm(props) {
                 <p>Number of words {wordsCount} and Number of character {text.length}</p>
                 <p><b>{(0.008 * text.split(" ").length).toFixed(3)} Minuts read</b></p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p style={colors}>{text}</p>
             </div>
         </>
     );

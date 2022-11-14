@@ -36,6 +36,12 @@ export default function TextForm(props) {
         console.log(boldText)
     };
 
+    //Remove extra spaces
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(' '));
+    };
+
     const handleCopyText = () => {
         navigator.clipboard.writeText(text);
         // console.log('copied');
@@ -70,7 +76,7 @@ export default function TextForm(props) {
             <div className="my-3">
                 <textarea
                 className="form-control"
-                style={colors}
+                style={{backgroundColor: props.mode==='dark'? 'black':'white', color: props.mode==='dark'? 'white':'black'}}
                 onChange={handleOnChange}
                 onMouseUp={getSelect}
                 value={text}
@@ -85,6 +91,9 @@ export default function TextForm(props) {
             <button className="btn btn-primary ms-3" onClick={handleLoClick}>
                 convert to LowerCase
             </button>
+            <button className="btn btn-primary ms-3" onClick={handleExtraSpaces}>
+                Remove extra spaces
+            </button>
             <button className="btn btn-primary ms-3" onClick={handleCopyText}>
                 Copy Text
             </button>
@@ -98,7 +107,7 @@ export default function TextForm(props) {
                 <p>Number of words {wordsCount} and Number of character {text.length}</p>
                 <p><b>{(0.008 * text.split(" ").length).toFixed(3)} Minuts read</b></p>
                 <h2>Preview</h2>
-                <p style={colors}>{text}</p>
+                <p style={{colors, color: props.mode==='dark'? 'white':'black'}}>{text}</p>
             </div>
         </>
     );

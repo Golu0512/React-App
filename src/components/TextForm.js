@@ -7,6 +7,7 @@ export default function TextForm(props) {
         let newText = text.toUpperCase();
         // set new text value into text through setText
         setText(newText);
+        props.showAlert('converted to upper case','success');
     };
 
     const handleLoClick = () => {
@@ -14,6 +15,7 @@ export default function TextForm(props) {
         let newText = text.toLowerCase();
         // set new text value into text through setText
         setText(newText);
+        props.showAlert('converted to lower case','success');
     };
 
     const handleClearText = () => {
@@ -21,6 +23,7 @@ export default function TextForm(props) {
         let newText = '';
         // set new text value into text through setText
         setText(newText);
+        props.showAlert('cler text','danger');
     };
 
     let boldText = '';
@@ -40,18 +43,20 @@ export default function TextForm(props) {
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(' '));
+        props.showAlert('removed extra spaces','success');
     };
 
     const handleCopyText = () => {
         navigator.clipboard.writeText(text);
         // console.log('copied');
+        props.showAlert('text copied','success');
     };
 
-    const changeTextColor = (e) => {
-        setColor({
-            color: e.target.value
-        });
-    };
+    // const changeTextColor = (e) => {
+    //     setColor({
+    //         color: e.target.value
+    //     });
+    // };
 
     const [text, setText] = useState("");
     const [colors, setColor] = useState({
@@ -71,7 +76,7 @@ export default function TextForm(props) {
             <h1 className="text-capitalize">{props.heading}</h1>
             <div className="my-3">
                 <p>Choose Text Color</p>
-                <input type='color' onChange={changeTextColor}/>
+                {/* <input type='color' onChange={changeTextColor}/> */}
             </div>
             <div className="my-3">
                 <textarea

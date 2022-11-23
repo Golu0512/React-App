@@ -63,13 +63,6 @@ export default function TextForm(props) {
         color: 'black'
     });
 
-    let wordsCount;
-    if (text === '') {
-        wordsCount = 0;
-    } else {
-        wordsCount = text.split(" ").length;
-    }
-
     return (
         <>
             <div className="container">
@@ -90,26 +83,28 @@ export default function TextForm(props) {
                 >
                 </textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUpClick}>
-                convert to UpperCase
-            </button>
-            <button className="btn btn-primary ms-3" onClick={handleLoClick}>
-                convert to LowerCase
-            </button>
-            <button className="btn btn-primary ms-3" onClick={handleExtraSpaces}>
-                Remove extra spaces
-            </button>
-            <button className="btn btn-primary ms-3" onClick={handleCopyText}>
-                Copy Text
-            </button>
-            <button className="btn btn-danger ms-3" onClick={handleClearText}>
-                Clear Text
-            </button>
+            <div className="w-100 col-lg-5 col-md-5 col-12">
+                <button className="btn btn-primary mb-1" onClick={handleUpClick}>
+                    convert to UpperCase
+                </button>
+                <button className="btn btn-primary ms-3 mb-1" onClick={handleLoClick}>
+                    convert to LowerCase
+                </button>
+                <button className="btn btn-primary ms-3 mb-1" onClick={handleExtraSpaces}>
+                    Remove extra spaces
+                </button>
+                <button className="btn btn-primary ms-3 mb-1" onClick={handleCopyText}>
+                    Copy Text
+                </button>
+                <button className="btn btn-danger ms-3 mb-1" onClick={handleClearText}>
+                    Clear Text
+                </button>
+            </div>
             </div>
             
             <div className="container my-3">
                 <h1 className="text-capitalize">your text summury</h1>
-                <p>Number of words {wordsCount} and Number of character {text.length}</p>
+                <p>Number of words {text.split(" ").filter((el)=>{return el.length !== 0}).length} and Number of character {text.length}</p>
                 <p><b>{(0.008 * text.split(" ").length).toFixed(3)} Minuts read</b></p>
                 <h2>Preview</h2>
                 <p style={{colors, color: props.mode==='dark'? 'white':'black'}}>{text}</p>

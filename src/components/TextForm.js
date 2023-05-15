@@ -37,6 +37,7 @@ export default function TextForm(props) {
         let textSel = window.getSelection().toString();
         boldText = textSel;
         console.log(boldText)
+        text = text.matchAll(boldText)
     };
 
     //Remove extra spaces
@@ -48,7 +49,6 @@ export default function TextForm(props) {
 
     const handleCopyText = () => {
         navigator.clipboard.writeText(text);
-        // console.log('copied');
         props.showAlert('text copied','success');
     };
 
@@ -104,7 +104,7 @@ export default function TextForm(props) {
             
             <div className="container my-3">
                 <h1 className="text-capitalize">your text summury</h1>
-                <p>Number of words {text.split(" ").filter((el)=>{return el.length !== 0}).length} and Number of character {text.length}</p>
+                <p>Number of words {text.split(/\s+/).filter((el)=>{return el.length !== 0}).length} and Number of character {text.length}</p>
                 <p><b>{(0.008 * text.split(" ").length).toFixed(3)} Minuts read</b></p>
                 <h2>Preview</h2>
                 <p style={{colors, color: props.mode==='dark'? 'white':'black'}}>{text}</p>
